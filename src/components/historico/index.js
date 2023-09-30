@@ -8,6 +8,7 @@ import {CiSquareRemove} from 'react-icons/ci'
 import FormDialogEdit from '../editModal';
 import AlertDialogSlide from '../removeModal';
 import { useComprasContext } from '../../periodoContext';
+import TableAntDesing from '../tableAntDesing';
 
 
 function Historico() {
@@ -72,7 +73,7 @@ function Historico() {
      <div className="historico-container">
         <h2 className='historico-title'>Histórico de Compras</h2>
         <div className="table-container">
-            <table>
+            {/* <table>
             <thead>
                 <tr>
                 <th>Nome da Ração</th>
@@ -97,7 +98,8 @@ function Historico() {
                   </tr>
                 ))}
             </tbody>
-            </table>
+            </table> */}
+            <TableAntDesing > </TableAntDesing>
         </div>
      </div>
     );

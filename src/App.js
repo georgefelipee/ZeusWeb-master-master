@@ -14,6 +14,7 @@ function App() {
          <GastosCard></GastosCard>
          <Historico></Historico>
        </div>
+      
      </div>
    
     </ComprasProvider>

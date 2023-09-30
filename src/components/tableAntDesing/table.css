@@ -1,0 +1,21 @@
+/* MeuBotao.css */
+.meu-botao {
+    border: 2px solid #EF8F3A; /* Substitua #FF0000 pela cor desejada */
+    color: #EF8F3A; /* Cor do texto */
+    background-color: transparent; /* Cor de fundo transparente */
+    /* Outros estilos desejados */
+  }
+  
+  .meu-botaoDelete {
+    margin-left: 10px;
+   /* Cor do texto */
+    background-color: transparent; /* Cor de fundo transparente */
+    /* Outros estilos desejados */
+  }
+  
+  .meu-botaoDelete:hover { 
+     border: 2px solid  #FF0000; 
+    color: #FF0000;
+   
+  }
+  

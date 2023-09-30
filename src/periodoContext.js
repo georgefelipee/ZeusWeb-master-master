@@ -9,6 +9,7 @@ export function ComprasProvider({ children }) {
   const [tempoSelecionado, setTempoSelecionado] = useState("2000");
   const [somaTotalGastoDinamico, setSomaTotalGastoDinamico] = useState(0)
   const [somaTotalQuantidadeDinamico, setSomaTotalQuantidadeDinamico] = useState(0)
+  const [anosDisponivei, setAnosDisponivei] = useState([])
 
   useEffect(() => {
     pegarGastos();
@@ -21,6 +22,9 @@ export function ComprasProvider({ children }) {
       .then((response) => {
         const dados = response.data;
         pegarMeses(dados);
+        pegarAnos(dados)
+      
+
 
         const ComprasPeriodoEspecifico = ComprasPeriodo(
           tempoSelecionado,dados
@@ -69,6 +73,23 @@ export function ComprasProvider({ children }) {
     const mesesUnicos = [...new Set(meses)].sort();
     setMesesDisponiveis(mesesUnicos);
   }
+
+  function pegarAnos(dados) {
+    const timeZone = "America/Sao_Paulo";
+  
+    const anos = dados.map((compra) => {
+      const dataString = compra.data;
+      const data = new Date(dataString);
+  
+      const ano = data.getFullYear(); // Extrair o ano
+  
+      return ano;
+    });
+    // Remover duplicatas e ordenar os anos
+    const anosUnicos = [...new Set(anos)].sort();
+    setAnosDisponivei(anosUnicos)
+  }
+
 
   function ComprasPeriodo(periodo, dados) {
     if (periodo == '30 dias' || periodo == '60 dias' || periodo == 2000) {
@@ -128,6 +149,7 @@ export function ComprasProvider({ children }) {
         setSomaTotalGastoDinamico,
         somaTotalGastoDinamico,
         somaTotalQuantidadeDinamico
+       
       }}
     >
       {children}

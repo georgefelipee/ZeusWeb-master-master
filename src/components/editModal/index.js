@@ -10,6 +10,8 @@ import axios from 'axios';
 import InputAdornment from '@mui/material/InputAdornment';
 import DatePicker from "react-datepicker";
 import { set } from 'date-fns/esm';
+import { parseISO, format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 
 export default function FormDialogEdit({open,setOpen,gasto}) {
@@ -21,17 +23,10 @@ export default function FormDialogEdit({open,setOpen,gasto}) {
   const [botaoHabilitado, setBotaoHabilitado] = useState(false);
 
   useEffect(() => {
-    const dataAtual = new Date(gasto.data);
 
-    const dia = String(dataAtual.getDate()).padStart(2, '0');
-    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
-    const ano = dataAtual.getFullYear();
-
-    const dataFormatada = `${ano}-${mes}-${dia}`;
-
-  
-    const datateste =  formatarData(gasto.data)
-    setData(datateste)
+    const dataFormatada = formatarData(gasto.data)
+   
+    setData(dataFormatada)
     setNomeRacao(gasto.nomeRacao)
     setTotalGasto(gasto.totalGasto)
     setQuantidade(gasto.quantidade)
@@ -39,16 +34,14 @@ export default function FormDialogEdit({open,setOpen,gasto}) {
   }, [gasto]);
 
   function formatarData(data) {
-    if (data) {
-      const partes = data.split('/');
-      if (partes.length === 3) {
-        const [dia, mes, ano] = partes;
-        return `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
-      }
-    }
-    return data; // Retorna a data original se for inválida ou não estiver definida
-  }
 
+    const dataUTC = new Date(data); // Converter a string para um objeto de data
+    const ano = dataUTC.getUTCFullYear();
+    const mes = String(dataUTC.getUTCMonth() + 1).padStart(2, '0');
+    const dia = String(dataUTC.getUTCDate()).padStart(2, '0');
+  
+    return `${ano}-${mes}-${dia}`;
+  }
 
   const handleClickButton = (evento) =>{
       axios.patch(`http://localhost:3000/gastos/${gasto._id}`,{
