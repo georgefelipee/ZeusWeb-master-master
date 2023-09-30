@@ -6,6 +6,7 @@ const ComprasContext = createContext();
 export function ComprasProvider({ children }) {
   const [ComprasContextarray, setCompras] = useState([]);
   const [mesesDisponiveisContext, setMesesDisponiveis] = useState([]);
+  const [tempoSelecionado, setTempoSelecionado] = useState()
 
   function pegarGastos() {
     api.get('/gastos')
@@ -49,11 +50,12 @@ export function ComprasProvider({ children }) {
   useEffect(() => {
 
     pegarGastos()
+    console.log('temposelecionado',tempoSelecionado);
   
-  }, []);
+  }, [tempoSelecionado]);
 
   return (
-    <ComprasContext.Provider value={{ ComprasContextarray, mesesDisponiveisContext }}>
+    <ComprasContext.Provider value={{ ComprasContextarray, mesesDisponiveisContext,setTempoSelecionado }}>
       {children}
     </ComprasContext.Provider>
   );

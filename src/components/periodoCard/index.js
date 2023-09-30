@@ -5,15 +5,14 @@ import { useComprasContext } from '../../periodoContext';
 
 function PeriodoCard({somaGastoTotal, setSomaGastototal, periodoSelecionado, setPeriodoSelecionado}) {
 
-  const {ComprasContextarray,mesesDisponiveisContext}= useComprasContext();
+  const {ComprasContextarray,mesesDisponiveisContext,setTempoSelecionado}= useComprasContext();
 
   const [gastos, setGastos] = useState([]);
-  const [selectedValue, setSelectedValue] = useState('2000');
   const [mesesDisponiveis, setMesesDisponiveis] = useState([]);
 
   const handlePeriodoChange = (event) => {
     setPeriodoSelecionado(event.target.value);
-    setSelectedValue(event.target.value)
+    setTempoSelecionado(event.target.value)
   };
 
 
@@ -70,7 +69,8 @@ function PeriodoCard({somaGastoTotal, setSomaGastototal, periodoSelecionado, set
             <select onChange={(e)=>handlePeriodoChange(e)} value={periodoSelecionado}>
              <option value="30">Últimos 30 dias</option>
              <option value="60">Últimos 60 dias</option>
-             {mesesDisponiveisContext.map((item)=> (<option key={item}> {item} </option>))}
+             <option value="2000">Todos os meses</option>
+             {mesesDisponiveisContext.map((item)=> (<option value={item} key={item}> {item} </option>))}
         
             </select>
       </div>
