@@ -1,0 +1,35 @@
+.button-periodo-container{
+  display: flex;
+  justify-content: center;
+  
+}
+/* Estilo do botão moderno */
+.addButton {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    background-color: #A1BB71;
+    color: #fff; /* Cor do texto */
+    padding: 13px 20px; /* Espaçamento interno */
+    border: none; /* Remover a borda */
+    border-radius: 4px; /* Cantos arredondados */
+    font-size: 16px;
+    font-weight: 600;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição de cor suave */
+  }
+ 
+  
+  /* Estilo de hover (quando o mouse passa por cima) */
+  .addButton:hover {
+    background-color: #7F993F; /* Cor de fundo mais escura */
+  }
+  
+  /* Centralizar o texto verticalmente no botão */
+  
+  /* Estilo do ícone "+" (opcional) */
+  .addButton::after {
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  

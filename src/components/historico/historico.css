@@ -1,0 +1,50 @@
+
+
+  .historico-container {
+    width: 70%; /* Largura do container */
+    height: 80vh; /* Altura do container em relação à altura da viewport */
+    margin-left: 50px;
+    margin-right: 30px;
+    margin-top: 30px;
+    background-color: #fff; /* Cor de fundo do container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    border-radius: 8px; /* Cantos arredondados */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; /* Centralizar o conteúdo no container */
+  }
+  
+  .historico-title {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos da tabela */
+  .table-container {
+    overflow-x: auto; /* Rolagem horizontal caso a tabela seja muito larga */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff; /* Cor de fundo da tabela */
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd; /* Bordas da tabela */
+  }
+  
+  th, td {
+    padding: 10px;
+  }
+  
+  /* Estilo para as linhas pares da tabela */
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Cor de fundo das linhas pares */
+  }
+  
+  /* Estilo para os cabeçalhos da tabela */
+  th {
+    background-color: #333; /* Cor de fundo dos cabeçalhos */
+    color: #fff; /* Cor do texto dos cabeçalhos */
+  }
+  

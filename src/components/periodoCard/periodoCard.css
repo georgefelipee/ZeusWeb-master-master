@@ -1,0 +1,36 @@
+/* Estilo do container */
+.periodo-container {
+    width: 50%; /* Largura do container */
+    margin: 0 auto; /* Centralizar horizontalmente */
+    padding: 20px;
+    background-color: #A1BB71;/* Cor de fundo do container */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo do título */
+ .periodo-container h2 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo do select */
+.periodo-container select {
+    width: 100%; /* Largura total do container */
+    padding: 2px; /* Espaçamento interno */
+    font-size: 16px;
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Cantos arredondados */
+    background-color: #fff; /* Cor de fundo do select */
+    color: #333; /* Cor do texto */
+  }
+  
+  /* Estilo para o foco (quando o select está selecionado) */
+ .periodo-container select:focus {
+    outline: none; /* Remover a borda de foco padrão */
+    border-color: #A1BB71; /* Cor da borda de foco personalizada */
+    box-shadow: 0 0 4px #A1BB71; /* Sombra de foco personalizada */
+  }
+  
