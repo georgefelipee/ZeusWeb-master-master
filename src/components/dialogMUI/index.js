@@ -107,13 +107,16 @@ export default function FormDialog(props) {
             type="number"
             onMouseEnter={()=>verificarCamposPreenchidos()}
             variant="standard"
+            InputProps={{
+              startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+            }}
             onChange={(e)=>{
               verificarCamposPreenchidos()
               setTotalGasto(e.target.value);
             }}
           />
           <TextField
-            label="Quantidade"
+            label="Quantidade Total Kg"
             id="quantidade"
             required='true'
             value={quantidade}
@@ -126,7 +129,7 @@ export default function FormDialog(props) {
            }}
             sx={{ m: 0.5, width: '20ch' }}
             InputProps={{
-              startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+              startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
             }}
           />
           <TextField

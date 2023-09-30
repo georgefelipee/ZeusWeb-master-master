@@ -124,6 +124,9 @@ export default function FormDialogEdit({open,setOpen,gasto}) {
             value={totalGasto}
             name='totalGasto'
             label="Gasto Total R$"
+            InputProps={{
+              startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+            }}
             type="number"
             onMouseEnter={()=>verificarCamposPreenchidos()}
             variant="standard"
@@ -133,7 +136,7 @@ export default function FormDialogEdit({open,setOpen,gasto}) {
             }}
           />
           <TextField
-            label="Quantidade"
+            label="Quantidade Total Kg"
             id="quantidade"
             required='true'
             value={quantidade}
@@ -146,7 +149,7 @@ export default function FormDialogEdit({open,setOpen,gasto}) {
            }}
             sx={{ m: 0.5, width: '20ch' }}
             InputProps={{
-              startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+              startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
             }}
           />
           <TextField

@@ -7,6 +7,7 @@ import {FaEdit} from 'react-icons/fa'
 import {CiSquareRemove} from 'react-icons/ci'
 import FormDialogEdit from '../editModal';
 import AlertDialogSlide from '../removeModal';
+import { useComprasContext } from '../../periodoContext';
 
 
 function Historico() {
@@ -14,6 +15,8 @@ function Historico() {
     const [openEdit,setOpenEdit] = useState(false)
     const [openRemove,setOpenRemove] = useState(false)
     const [gastoParaEditar, setGastoParaEditar] = useState({});
+
+    const {ComprasContextarray,mesesDisponiveisContext,setTempoSelecionado}= useComprasContext();
 
     useEffect(()=>{
         axios.get('http://localhost:3000/gastos/')
@@ -79,13 +82,7 @@ function Historico() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>Ração A</td>
-                <td>10 kg</td>
-                <td>R$ 50.00</td>
-                <td>2023-09-14</td>
-                </tr>
-                {gastos.map((item)=> (
+                {ComprasContextarray.map((item)=> (
                     <tr>
                     <td>{item.nomeRacao}</td>
                     <td>{item.quantidade} kg</td>
