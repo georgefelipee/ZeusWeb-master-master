@@ -57,7 +57,7 @@ function GastosCard() {
         <div className='gastos-container'>
           <h3>Gasto Total</h3>
           <p className='preco'>R$ {Number(somaTotalGastoDinamico).toFixed(2)}</p>
-          <p className='periodo'>Período: {tempoSelecionado=="2000" ? "Todos os dias" :  tempoSelecionado } </p>
+          <p className='periodo'>Período: {tempoSelecionado=="2000" ? "Todos os meses" :  tempoSelecionado } </p>
         </div> 
          <QuantidadeCard  />
         <div className='button-periodo-container'>

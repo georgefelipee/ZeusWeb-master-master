@@ -9,7 +9,7 @@ function QuantidadeCard({periodoSelecionado,somaQuantidadeTotal}) {
       <div className="quantidade-card">
          <h3>Estoque Total</h3>
          <p className='quantidade'>{Number(somaTotalQuantidadeDinamico).toFixed(1)} Kg</p>
-         <p className='periodo'>Período: {tempoSelecionado=="2000" ? "Todos os dias" :  tempoSelecionado } </p>
+         <p className='periodo'>Período: {tempoSelecionado=="2000" ? "Todos os meses" :  tempoSelecionado } </p>
       </div>
     );
   }

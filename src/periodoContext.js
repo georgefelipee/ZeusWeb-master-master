@@ -10,24 +10,30 @@ export function ComprasProvider({ children }) {
   const [somaTotalGastoDinamico, setSomaTotalGastoDinamico] = useState(0)
   const [somaTotalQuantidadeDinamico, setSomaTotalQuantidadeDinamico] = useState(0)
   const [anosDisponivei, setAnosDisponivei] = useState([])
+  const [anoSelecionado, setAnoSelecionado] = useState(2023)
 
   useEffect(() => {
     pegarGastos();
-    console.log("temposelecionado", tempoSelecionado);
-  }, [tempoSelecionado]);
+    console.log("anoSelecionado", anoSelecionado);
+  }, [tempoSelecionado,anoSelecionado]);
 
   function pegarGastos() {
     api
       .get("/gastos")
       .then((response) => {
         const dados = response.data;
-        pegarMeses(dados);
         pegarAnos(dados)
-      
+       
+        const ComprasAnoEspecifico = filtrarComprasPorAno(dados,anoSelecionado)
+        console.log("ComprasAnoEspecifico",ComprasAnoEspecifico);
+        pegarMeses(ComprasAnoEspecifico);
 
+        if(Number(anoSelecionado)>2023){
+          setTempoSelecionado(mesesDisponiveisContext[0])
+        }
 
         const ComprasPeriodoEspecifico = ComprasPeriodo(
-          tempoSelecionado,dados
+          tempoSelecionado,ComprasAnoEspecifico
         );
 
         pegarGastoTotalDinamico(ComprasPeriodoEspecifico)
@@ -39,6 +45,16 @@ export function ComprasProvider({ children }) {
       .catch((err) => {
         console.error("Erro ao buscar dados", err);
       });
+  }
+
+  function filtrarComprasPorAno(dados, anoDesejado) {
+    return dados.filter((compra) => {
+      const dataString = compra.data;
+      const data = new Date(dataString);
+      const anoCompra = data.getUTCFullYear(); // Obter o ano da compra
+  
+      return anoCompra === Number(anoDesejado);
+    });
   }
 
   function pegarGastoTotalDinamico(dados){
@@ -137,8 +153,6 @@ export function ComprasProvider({ children }) {
 
   }
 
-
-
   return (
     <ComprasContext.Provider
       value={{
@@ -148,7 +162,10 @@ export function ComprasProvider({ children }) {
         tempoSelecionado,
         setSomaTotalGastoDinamico,
         somaTotalGastoDinamico,
-        somaTotalQuantidadeDinamico
+        somaTotalQuantidadeDinamico,
+        anosDisponivei,
+        setAnoSelecionado,
+        anoSelecionado
        
       }}
     >

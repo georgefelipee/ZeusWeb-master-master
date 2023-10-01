@@ -10,3 +10,30 @@ h1{
 label{
     color: #809733;
 }
+
+.mesAndAnoContainer{
+    display: flex;
+    flex-direction: row;
+    margin-left: 24.5rem;
+    gap: 33.5rem;
+}
+.mesAndAnoContainer p {
+   font-weight: 500;
+    font-size: 1.2em;
+    color: #404E4D;
+}
+
+.mesAndAnoContainer select {
+    
+    width:80px; /* Largura total do container */
+    padding: 2px; /* Espaçamento interno */
+    font-size: 16px;
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Cantos arredondados */
+    background-color: #fff; /* Cor de fundo do select */
+    color: #333; /* Cor do texto */
+    margin-left: 10px;
+ }
+ 
+ 
+

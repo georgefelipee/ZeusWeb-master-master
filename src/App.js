@@ -10,6 +10,7 @@ function App() {
     <ComprasProvider>
         <div className="App">
        <Header></Header>
+       
        <div className='container-geral'>
          <GastosCard></GastosCard>
          <Historico></Historico>

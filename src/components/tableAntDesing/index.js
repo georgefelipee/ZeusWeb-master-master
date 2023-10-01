@@ -14,7 +14,9 @@ function TableAntDesing() {
     useComprasContext();
 
   const [dataSource, setDataSource] = useState([{}]);
+
   const [page, setPage] = useState(1);
+  
   const [pageSize, setPageSize] = useState(5);
   const [order, setOrder] = useState("asc");
   const [openEdit,setOpenEdit] = useState(false)
@@ -24,6 +26,8 @@ function TableAntDesing() {
     const newOrder = order === "asc" ? "desc" : "asc";
     setOrder(newOrder);
   };
+
+  const totalDePaginas = Math.ceil(ComprasContextarray.lenght / 5)
 
   const columns = [
     {
@@ -114,11 +118,10 @@ function TableAntDesing() {
         dataSource={ComprasContextarray}
         pagination={{
           current: page,
-          pageSize: pageSize,
-          total: 10,
+          pageSize: 5,
+          total: ComprasContextarray.lenght,
           onChange: (page, pageSize) => {
             setPage(page);
-            setPageSize(ComprasContextarray.lenght);
           },
         }}
       ></Table>

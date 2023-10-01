@@ -19,18 +19,6 @@ function Historico() {
 
     const {ComprasContextarray,mesesDisponiveisContext,setTempoSelecionado}= useComprasContext();
 
-    useEffect(()=>{
-        axios.get('http://localhost:3000/gastos/')
-            .then((response) => {
-                const arrayFormatado =  formatarDatasNoArray(response.data) 
-                setGastos(arrayFormatado)               
-                console.log(arrayFormatado)
-            })
-            .catch((err)=>{
-                console.error('Erro ao buscar dados', err);
-            })
-    },[]);
-
     function formatarDatasNoArray(gastos){
         return gastos.map((objeto) => {
             // Analisar a data no objeto (caso não esteja em um objeto de data)
