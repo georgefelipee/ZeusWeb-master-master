@@ -7,7 +7,7 @@ import {FaEdit} from 'react-icons/fa'
 import {CiSquareRemove} from 'react-icons/ci'
 import FormDialogEdit from '../editModal';
 import AlertDialogSlide from '../removeModal';
-import { useComprasContext } from '../../periodoContext';
+import { useComprasContext } from '../../Context/periodoContext.js';
 import TableAntDesing from '../tableAntDesing';
 
 

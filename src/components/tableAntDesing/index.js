@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm } from "antd";
 import React, { Component, useEffect, useState } from "react";
 import api from "../../services/api";
-import { useComprasContext } from "../../periodoContext";
+import { useComprasContext } from "../../Context/periodoContext.js";
 import FormDialogEdit from "../editModal";
 import { parseISO } from "date-fns";
 import { format } from 'date-fns-tz';

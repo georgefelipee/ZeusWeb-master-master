@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
 import { FaDog } from "react-icons/fa";
-import { useComprasContext } from "../../periodoContext";
+import { useComprasContext } from "../../Context/periodoContext.js";
 import { format, isThisMonth, set } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 
@@ -35,7 +35,7 @@ function Header() {
 
   return (
     <header>
-      <h1>
+      <h1 className="tituloheader" >
         Pet<label>Investiment</label> <FaDog></FaDog>
       </h1>
       <div className="mesAndAnoContainer">

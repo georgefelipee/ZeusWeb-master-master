@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import api from "./services/api";
+import api from "../services/api";
 
 const ComprasContext = createContext();
 
@@ -31,7 +31,7 @@ export function ComprasProvider({ children }) {
         if(Number(anoSelecionado)>2023){
           setTempoSelecionado(mesesDisponiveisContext[0])
         }
-
+        
         const ComprasPeriodoEspecifico = ComprasPeriodo(
           tempoSelecionado,ComprasAnoEspecifico
         );

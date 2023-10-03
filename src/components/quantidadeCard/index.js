@@ -1,6 +1,6 @@
 import React from "react";
 import './quantidadeCard.css'
-import { useComprasContext } from "../../periodoContext";
+import { useComprasContext } from "../../Context/periodoContext.js";
 function QuantidadeCard({periodoSelecionado,somaQuantidadeTotal}) {
 
   const {ComprasContextarray,mesesDisponiveisContext,setTempoSelecionado,tempoSelecionado,somaTotalQuantidadeDinamico}= useComprasContext();

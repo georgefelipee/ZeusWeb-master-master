@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './periodoCard.css'
 import api from '../../services/api';
-import { useComprasContext } from '../../periodoContext';
+import { useComprasContext } from '../../Context/periodoContext.js';
 
 function PeriodoCard({somaGastoTotal, setSomaGastototal}) {
 

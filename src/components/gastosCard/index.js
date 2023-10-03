@@ -4,7 +4,7 @@ import AddButton from '../addButton';
 import PeriodoCard from '../periodoCard';
 import axios from 'axios';
 import QuantidadeCard from '../quantidadeCard';
-import { useComprasContext } from '../../periodoContext';
+import { useComprasContext } from '../../Context/periodoContext.js';
 
 function GastosCard() {
         
