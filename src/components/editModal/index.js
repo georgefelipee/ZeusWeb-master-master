@@ -44,7 +44,7 @@ export default function FormDialogEdit({open,setOpen,gasto}) {
   }
 
   const handleClickButton = (evento) =>{
-      axios.patch(`http://localhost:3000/gastos/${gasto._id}`,{
+      axios.patch(`http://localhost:3003/gastos/${gasto._id}`,{
       nomeRacao: nomeRacao,
       totalGasto: totalGasto,
       quantidade: quantidade,

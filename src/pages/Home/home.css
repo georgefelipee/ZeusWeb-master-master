@@ -1,5 +1,10 @@
+.app{
+    display: flex;
+    box-sizing: border-box;
+}
 .container-geral{
     display: flex;
-    justify-content:space-between;
+    flex-direction: row;
+    gap: 3rem;
+    margin-top: 20px;
 }
-

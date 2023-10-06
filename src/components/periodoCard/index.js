@@ -43,7 +43,6 @@ function PeriodoCard({somaGastoTotal, setSomaGastototal}) {
             <h2>Selecione um período</h2>
             <select onChange={(e)=>handlePeriodoChange(e)} value={tempoSelecionado}>
              <option value="2000">Todos os meses</option>
-             <option value="30 dias">Últimos 30 dias</option> 
              {mesesDisponiveisContext.map((item)=> (<option value={item} key={item}> {item} </option>))}
         
             </select>

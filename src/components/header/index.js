@@ -4,11 +4,24 @@ import { FaDog } from "react-icons/fa";
 import { useComprasContext } from "../../Context/periodoContext.js";
 import { format, isThisMonth, set } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const { anosDisponivei,setAnoSelecionado,anoSelecionado,setTempoSelecionado,mesesDisponiveisContext } = useComprasContext();
+  
+  
+  const { anosDisponivei,setAnoSelecionado,anoSelecionado,setTempoSelecionado,mesesDisponiveisContext, tempoSelecionado } = useComprasContext();
 
   const [mesAtual, setMesAtual] = useState('')
+  const navigate = useNavigate()
+
+  const handleClickButton = () => {
+    localStorage.removeItem('nome')
+    localStorage.removeItem('email')
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    navigate('/login')
+ 
+  }
 
   const handleChangeAno = (event) => {
 
@@ -16,8 +29,6 @@ function Header() {
     console.log("event",event.target.value);
     setTempoSelecionado("2000")
   }
-
-
   useEffect(() => {
 
      // Função para obter o mês atual em extenso
@@ -32,15 +43,18 @@ function Header() {
     
   }, [])
   
-
   return (
     <header>
-      <h1 className="tituloheader" >
-        Pet<label>Investiment</label> <FaDog></FaDog>
+      <h1 className="tituloheaderr" >
+        <div>
+           Pet<label>Investiment</label> <FaDog></FaDog>
+        </div>
+
+        <button onClick={handleClickButton}>Sair</button>
       </h1>
       <div className="mesAndAnoContainer">
-        <p>Mês Atual: {mesAtual}</p>
-        <p>
+        <p>Mês Atual: {tempoSelecionado == 2000 ? "Todos os meses " : tempoSelecionado}</p>
+        {/* <p>
           Ano Selecionado:
           <select value={anoSelecionado} onChange={(e) =>handleChangeAno(e)}>
             {anosDisponivei.map((item) => (
@@ -49,7 +63,7 @@ function Header() {
               </option>
             ))}
           </select>
-        </p>
+        </p> */}
       </div>
     </header>
   );

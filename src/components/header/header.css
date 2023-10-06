@@ -1,10 +1,31 @@
-.tituloheader{
+.tituloheaderr{
     color: #DE8434;
     font-weight: bolder;
     font-size: 3rem;
-    margin-top: 8px;
     margin-left: 30px;
+    padding-top: 16px;
     padding-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tituloheaderr button{
+    margin-right: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    background-color: #DE8434; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.tituloheader button:hover {
+    background-color: #f44336; /* Cor de fundo do botão ao passar o mouse */
 }
 
 label{
@@ -14,7 +35,7 @@ label{
 .mesAndAnoContainer{
     display: flex;
     flex-direction: row;
-    margin-left: 24.5rem;
+    margin-left: 23rem;
     gap: 33.5rem;
 }
 .mesAndAnoContainer p {

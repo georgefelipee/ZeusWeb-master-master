@@ -92,13 +92,7 @@ function TableAntDesing() {
       ),
     },
   ];
-  useEffect(() => {
-    api.get("/gastos").then((response) => {
-      const dados = response.data;
-      setDataSource(dados);
-    });
-  }, []);
-
+  
   const handleEdit = (record) => {
     setOpenEdit(true)
     setGastoParaEditar(record)
@@ -106,7 +100,7 @@ function TableAntDesing() {
   };
 
   const handleDelete = (key) => {
-    axios.delete(`http://localhost:3000/gastos/${key}`)
+    axios.delete(`http://localhost:3003/gastos/${key}`)
     document.location.reload()
     console.log('Excluir', key);
   };

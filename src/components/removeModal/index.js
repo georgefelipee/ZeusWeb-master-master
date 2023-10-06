@@ -25,7 +25,7 @@ export default function AlertDialogSlide({open,setOpen,gasto}) {
 
 
   const handleClickRemove = () => {
-    axios.delete(`http://localhost:3000/gastos/${gasto._id}`)
+    axios.delete(`http://localhost:3003/gastos/${gasto._id}`)
     setOpen(false);
     document.location.reload()
   };

@@ -3,20 +3,22 @@ import GastosCard from '../../components/gastosCard';
 import Header from '../../components/header';
 import Historico from '../../components/historico';
 import './home.css'
+import { AuthProvider } from '../../Context/Authprovider';
 
 function Home() {
   return (
-    <ComprasProvider>
-        <div className="App">
-       <Header></Header>
-       
-       <div className='container-geral'>
-         <GastosCard></GastosCard>
-         <Historico></Historico>
-       </div>
-      
-     </div>
-    </ComprasProvider>
+   <AuthProvider>
+      <ComprasProvider>
+          <div className="App">
+            <Header></Header>
+            <div className='container-geral'>
+              <GastosCard/>
+              <Historico/>
+            </div>
+          </div>
+      </ComprasProvider>
+   </AuthProvider> 
+    
       
   
   );

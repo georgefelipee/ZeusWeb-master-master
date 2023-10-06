@@ -12,8 +12,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import DatePicker from "react-datepicker";
 
 import './dialog.css'
+import { useAuth } from '../../Context/Authprovider/useAuth';
+
+
 
 export default function FormDialog(props) {
+  
+ const auth =  useAuth()
 
   const [nomeRacao,setNomeRacao] = useState('')
   const [totalGasto,setTotalGasto] = useState()
@@ -37,13 +42,13 @@ export default function FormDialog(props) {
     setQuantidade('')
   }, []);
 
-
   const handleClickButton = (evento) =>{
-      axios.post("http://localhost:3000/gastos",{
+      axios.post("http://localhost:3003/gastos",{
       nomeRacao: nomeRacao,
       totalGasto: totalGasto,
       quantidade: quantidade,
-      data: data
+      data: data,
+      userId: auth.id
     })
       .then(handleCloseCadastrar())
       .catch((err)=> console.log(err))
@@ -66,6 +71,7 @@ export default function FormDialog(props) {
     setQuantidade('')
     verificarCamposPreenchidos()
     document.location.reload()
+    
   };
   const handleClose = () => {
     setNomeRacao('')

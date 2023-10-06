@@ -1,9 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../services/api";
 
+import { getUserLocalStorage } from "./Authprovider/utils";
+
 const ComprasContext = createContext();
 
 export function ComprasProvider({ children }) {
+
   const [ComprasContextarray, setCompras] = useState([]);
   const [mesesDisponiveisContext, setMesesDisponiveis] = useState([]);
   const [tempoSelecionado, setTempoSelecionado] = useState("2000");
@@ -14,14 +17,16 @@ export function ComprasProvider({ children }) {
 
   useEffect(() => {
     pegarGastos();
-    console.log("anoSelecionado", anoSelecionado);
   }, [tempoSelecionado,anoSelecionado]);
 
+  const user = getUserLocalStorage('user.id')
   function pegarGastos() {
     api
-      .get("/gastos")
+      .get(`/gastos/user/${user.id}`)
       .then((response) => {
+        console.log('periodo Auth',user.id);
         const dados = response.data;
+        console.log(dados);
         pegarAnos(dados)
        
         const ComprasAnoEspecifico = filtrarComprasPorAno(dados,anoSelecionado)
@@ -108,20 +113,8 @@ export function ComprasProvider({ children }) {
 
 
   function ComprasPeriodo(periodo, dados) {
-    if (periodo == '30 dias' || periodo == '60 dias' || periodo == 2000) {
-      console.log('entrou');
-      const periodoaArray = periodo.split(' ');
-      const periodoNumero = Number(periodoaArray[0])
-      const dataAtual = new Date();
-      const dataInicial = new Date(dataAtual);
-      dataInicial.setDate(dataAtual.getDate() - periodoNumero);
-
-      const comprasNoPeriodo = dados.filter((compra) => {
-        const dataCompra = new Date(compra.data); // Suponhamos que 'data' é a propriedade da data da compra
-        return dataCompra >= dataInicial && dataCompra <= dataAtual;
-      });
-
-      return comprasNoPeriodo
+    if (periodo == 2000) {
+      return dados
     } else {
       const arrayFormatado = filtrarComprasPorMes(periodo, dados)
       return arrayFormatado
