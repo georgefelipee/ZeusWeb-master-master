@@ -7,20 +7,23 @@ import { parseISO } from "date-fns";
 import { format } from 'date-fns-tz';
 import ptBR from "date-fns/locale/pt-BR";
 import axios from "axios";
-import './table.css'
 
-function TableAntDesing() {
-  const { ComprasContextarray, mesesDisponiveisContext, setTempoSelecionado } =
+
+function TableAntDesing({notify}) {
+  const { ComprasContextarray,setCompras, mesesDisponiveisContext, setTempoSelecionado,pegarGastos } =
     useComprasContext();
 
   const [dataSource, setDataSource] = useState([{}]);
-
+  
   const [page, setPage] = useState(1);
   
   const [pageSize, setPageSize] = useState(5);
   const [order, setOrder] = useState("asc");
   const [openEdit,setOpenEdit] = useState(false)
   const [gastoParaEditar, setGastoParaEditar] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  
+
 
   const toggleOrder = () => {
     const newOrder = order === "asc" ? "desc" : "asc";
@@ -99,10 +102,26 @@ function TableAntDesing() {
     console.log('Editar', record);
   };
 
-  const handleDelete = (key) => {
-    axios.delete(`http://localhost:3003/gastos/${key}`)
-    document.location.reload()
-    console.log('Excluir', key);
+  const handleDelete = async(key) => {
+    try {
+      if(ComprasContextarray.lenght = 1){
+        setIsLoading(true);
+        const updatedData = await ComprasContextarray.filter(item => item._id !== key);
+        setCompras('')
+        return
+      }
+      setIsLoading(true);
+      const updatedData = await ComprasContextarray.filter(item => item._id !== key);
+      setCompras(updatedData)
+      notify()
+      axios.delete(`http://localhost:3003/gastos/${key}`)
+      setCompras(updatedData)
+    } catch (error) {
+      console.error('Erro ao excluir o item', error);
+    } finally {
+      setIsLoading(false)
+    }
+      
   };
 
   return (
@@ -120,10 +139,11 @@ function TableAntDesing() {
         }}
       ></Table>
       <FormDialogEdit 
-                            open={openEdit} 
-                            setOpen={setOpenEdit}  
-                            gasto={gastoParaEditar}
-                            />
+            open={openEdit} 
+            setOpen={setOpenEdit}  
+            gasto={gastoParaEditar}
+       />
+      
     </>
   );
 }

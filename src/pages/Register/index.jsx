@@ -9,6 +9,7 @@ import { Header } from '../LoginNew/styles';
 import { FaDog } from 'react-icons/fa';
 import Lottie from 'lottie-web'
 import CatAnimation from '../../assets/animation_lndlhhfa.json'
+import AvisoMui from '../../components/AvisoMui';
 
 
 function Registro() {
@@ -17,6 +18,10 @@ function Registro() {
 
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState([])
+  const [openAviso, setOpenAviso] = useState(false)
+  const [avisoMessage, setAvisoMessage] = useState('')
+  const [passwordError, setPasswordError] = useState('');
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -39,14 +44,14 @@ function Registro() {
   useEffect(() => {
 
     const token = localStorage.getItem('token')
-    console.log('token',token);
+    console.log('token', token);
     if (token != undefined) {
       const verifyToken = async () => {
         const tokenVerify = await UserService.verificarToken(token)
-        console.log('tokenVerify',tokenVerify);
-        if(tokenVerify.message== "Token válido"){
+        console.log('tokenVerify', tokenVerify);
+        if (tokenVerify.message == "Token válido") {
           navigate('/')
-        }else{
+        } else {
           navigate('/login')
         }
       }
@@ -59,8 +64,18 @@ function Registro() {
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
     console.log(form);
+   
+
   }
 
+const PasswordVerify = (e) => {
+  if (form.password !== e.target.value) {
+    setPasswordError('As senhas não coincidem!')
+  } else {
+    setPasswordError('')
+  }
+  
+}
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -94,7 +109,8 @@ function Registro() {
 
       const msg = error.response.data.msg
       console.log(error.response.data.msg);
-      alert(msg)
+      setOpenAviso(true)
+      setAvisoMessage(msg)
       setLoading(false)
     }
 
@@ -106,12 +122,14 @@ function Registro() {
       && validarEmail(form.email)
       && validarSenha(form.password)
       && validarConfirmPassword(form.password, form.confirmpassowrd)
+
+     
   }
   console.log('Form esta validado', validadorInput());
 
   return (
     <Container>
-       <Header>
+      <Header>
         <h1 className="tituloheader" > Pet<label>Investiment</label> <FaDog></FaDog> </h1>
         <div id="lottie-container" style={{ width: '520px', height: '800x' }}>
           {/* O elemento onde a animação será renderizada */}
@@ -142,12 +160,21 @@ function Registro() {
         <InputCustomizado
           name='confirmpassowrd'
           placeholder='Digite sua senha novamente'
-          onChange={handleChange}
+          onChange={(e) => { 
+            handleChange(e)
+            PasswordVerify(e)
+          }}
           type='password'
         />
+        {passwordError && (
+          <span style={{ color: '#E32C2C', height: '1px', fontStyle:'Inter',fontSize: '16px',fontWeight: 'bold' }}>
+            {passwordError}
+          </span>
+        ) }
         <Botao
           type='submit'
           text='Cadastrar'
+          onMouseOver={PasswordVerify}
           onClick={handleSubmit}
           disabled={loading === true | !validadorInput()}
         // disabled={!validandoInput()}
@@ -157,8 +184,8 @@ function Registro() {
           <NavLink to={'/'}> <a>Entrar</a> </NavLink>
         </SubContainer>
 
-
       </Form>
+      <AvisoMui openAviso={openAviso} setOpenAviso={setOpenAviso} avisoMessage={avisoMessage} />
     </Container>
   )
 

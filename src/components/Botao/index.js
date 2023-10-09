@@ -7,10 +7,12 @@ export default function Botao({
     type,
     text,
     onClick,
-    disabled
+    disabled,
+    handleMouseOver
 }) {
   return (
     <BotaoCustomizado
+      onMouseOver={handleMouseOver}
      type={type}
      text={text}
      disabled={disabled}

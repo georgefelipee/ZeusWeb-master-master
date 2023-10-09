@@ -9,6 +9,7 @@ import { FaDog } from 'react-icons/fa'
 import Lottie from 'lottie-web'
 import CatAnimation from '../../assets/animation_lndlhhfa.json'
 import { getUserLocalStorage } from '../../Context/Authprovider/utils'
+import AvisoMui from '../../components/AvisoMui'
 
 
 export default function LoginNew() {
@@ -18,7 +19,10 @@ export default function LoginNew() {
 
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState([])
+  const [openAviso, setOpenAviso] = useState(false)
+  const [avisoMessage, setAvisoMessage] = useState('')
   const navigate = useNavigate()
+
 
   useEffect(() => {
     const animationContainer = document.getElementById('lottie-container'); // ID do elemento onde você deseja exibir a animação
@@ -59,8 +63,6 @@ export default function LoginNew() {
 
 
 
-
-
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
     console.log(form);
@@ -81,7 +83,9 @@ export default function LoginNew() {
     } catch (error) {
       const msg = error.response.data.msg
       console.log(error.response.data.msg);
-      alert(msg)
+  
+      setAvisoMessage(msg)
+      setOpenAviso(true)
       setLoading(false)
 
 
@@ -131,6 +135,7 @@ export default function LoginNew() {
 
 
       </Form>
+      <AvisoMui openAviso={openAviso} setOpenAviso={setOpenAviso} avisoMessage={avisoMessage} />
     </Container>
   )
 }

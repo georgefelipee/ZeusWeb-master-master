@@ -17,7 +17,7 @@ export function ComprasProvider({ children }) {
 
   useEffect(() => {
     pegarGastos();
-  }, [tempoSelecionado,anoSelecionado]);
+  }, [tempoSelecionado,anoSelecionado,ComprasContextarray]);
 
   const user = getUserLocalStorage('user.id')
   function pegarGastos() {
@@ -149,6 +149,7 @@ export function ComprasProvider({ children }) {
   return (
     <ComprasContext.Provider
       value={{
+        pegarGastos,
         ComprasContextarray,
         mesesDisponiveisContext,
         setTempoSelecionado,
@@ -158,7 +159,8 @@ export function ComprasProvider({ children }) {
         somaTotalQuantidadeDinamico,
         anosDisponivei,
         setAnoSelecionado,
-        anoSelecionado
+        anoSelecionado,
+        setCompras
        
       }}
     >

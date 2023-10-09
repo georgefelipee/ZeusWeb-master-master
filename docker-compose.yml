@@ -1,0 +1,22 @@
+version: '3'
+services:
+  frontend:
+    build: 
+      context: ./
+    ports:
+     - "3000:3000"
+    depends_on:
+      - api-auth
+      - api-gastos-zeus
+
+  api-auth:
+    image: 21767767832b5a52a74eed99a8e958a08b8173d46b7362ae3eeb854031da8d65
+    ports:
+      - "3001:3001"
+
+  api-gastos-zeus:
+    image: 0162b0ba13b49bc1d3a96bbc9cb697daf1009caebdfc443d5d73fe849e71115f
+    ports: 
+     - "3003:3003"
+
+    

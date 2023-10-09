@@ -10,9 +10,9 @@ import './dialog.css'
 import axios from 'axios';
 import InputAdornment from '@mui/material/InputAdornment';
 import DatePicker from "react-datepicker";
-
 import './dialog.css'
 import { useAuth } from '../../Context/Authprovider/useAuth';
+import { Input } from '@mui/material';
 
 
 
@@ -82,6 +82,35 @@ export default function FormDialog(props) {
     props.setOpen(false);
   };
 
+  const handleNumberChange = (event) => {
+    const inputValue = event.target.value;
+
+    // Use uma expressão regular para remover caracteres não numéricos
+    const numericValue = inputValue.replace(/\D/g, '');
+
+    // Limite o número máximo de dígitos (por exemplo, 5 dígitos)
+    const maxLength = 4;
+
+    // Verifique se a entrada não excede o número máximo de dígitos
+    if (numericValue.length <= maxLength) {
+      setTotalGasto(numericValue);
+    }
+  };
+  const handleNumberQuantidadeChange = (event) => {
+    const inputValue = event.target.value;
+
+    // Use uma expressão regular para remover caracteres não numéricos
+    const numericValue = inputValue.replace(/\D/g, '');
+
+    // Limite o número máximo de dígitos (por exemplo, 5 dígitos)
+    const maxLength = 4;
+
+    // Verifique se a entrada não excede o número máximo de dígitos
+    if (numericValue.length <= maxLength) {
+      setQuantidade(numericValue);
+    }
+  };
+
   return (
     <div className='popup'>
       <Dialog open={props.open} onClose={handleClose}>
@@ -93,6 +122,7 @@ export default function FormDialog(props) {
             id="nomeRacao"
             label="Nome da ração"
             type="text"
+            inputProps={{maxLength: 20}}
             value={nomeRacao}
             onMouseEnter={()=>verificarCamposPreenchidos()}
             name='nomeRacao'
@@ -111,6 +141,7 @@ export default function FormDialog(props) {
             name='totalGasto'
             label="Gasto Total R$"
             type="number"
+            inputProps={{ maxLength: 5 }} 
             onMouseEnter={()=>verificarCamposPreenchidos()}
             variant="standard"
             InputProps={{
@@ -118,7 +149,7 @@ export default function FormDialog(props) {
             }}
             onChange={(e)=>{
               verificarCamposPreenchidos()
-              setTotalGasto(e.target.value);
+              handleNumberChange(e)
             }}
           />
           <TextField
@@ -131,9 +162,9 @@ export default function FormDialog(props) {
             onMouseEnter={()=>verificarCamposPreenchidos()}
             onChange={(e)=>{
               verificarCamposPreenchidos()
-              setQuantidade(e.target.value);
+              handleNumberQuantidadeChange(e)
            }}
-            sx={{ m: 0.5, width: '20ch' }}
+            sx={{ marginTop: '10px' , width: '100%' }}
             InputProps={{
               startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
             }}
