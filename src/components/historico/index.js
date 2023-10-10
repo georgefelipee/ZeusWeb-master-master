@@ -19,7 +19,7 @@ function Historico() {
   const [gastoParaEditar, setGastoParaEditar] = useState({});
 
 
-  const { ComprasContextarray, mesesDisponiveisContext, setTempoSelecionado } = useComprasContext();
+  const { ComprasContextarray, mesesDisponiveisContext, setTempoSelecionado,tempoSelecionado } = useComprasContext();
 
   const handleClickButton = (id) => {
     setOpenEdit(true)
@@ -41,7 +41,7 @@ function Historico() {
   };
   const notify = () => toast.success("Gasto excluido com sucesso!", {
     position: "bottom-right",
-    autoClose: 3000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -50,22 +50,26 @@ function Historico() {
     theme: "light",
   });
   return (
-    <div className="historico-container">
-      <h2 className='historico-title'>Histórico de Compras</h2>
-      <div className="table-container">
-        <TableAntDesing notify={notify}> </TableAntDesing>
-      </div>
-      <ToastContainer position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light" />
+  <div className='container'>
+   <p>Mês Atual: {tempoSelecionado == 2000 ? "Todos os meses " : tempoSelecionado}</p>
+  <div className="historico-container">
+        <h2 className='historico-title'>Histórico de Compras</h2>
+        <div className="table-container">
+          <TableAntDesing notify={notify}> </TableAntDesing>
+        </div>
+        <ToastContainer position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" />
     </div>
+  </div>
+   
   );
 }
 

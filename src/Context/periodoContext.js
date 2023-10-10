@@ -14,10 +14,11 @@ export function ComprasProvider({ children }) {
   const [somaTotalQuantidadeDinamico, setSomaTotalQuantidadeDinamico] = useState(0)
   const [anosDisponivei, setAnosDisponivei] = useState([])
   const [anoSelecionado, setAnoSelecionado] = useState(2023)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     pegarGastos();
-  }, [tempoSelecionado,anoSelecionado,ComprasContextarray]);
+  }, [tempoSelecionado,anoSelecionado,isLoading]);
 
   const user = getUserLocalStorage('user.id')
   function pegarGastos() {
@@ -160,7 +161,11 @@ export function ComprasProvider({ children }) {
         anosDisponivei,
         setAnoSelecionado,
         anoSelecionado,
-        setCompras
+        setCompras,
+        isLoading, 
+        setIsLoading,
+        setSomaTotalQuantidadeDinamico
+        
        
       }}
     >

@@ -10,12 +10,12 @@ services:
       - api-gastos-zeus
 
   api-auth:
-    image: 21767767832b5a52a74eed99a8e958a08b8173d46b7362ae3eeb854031da8d65
+    image: c1f452e572db945e5e1d7b588edbb02ea0b3314d5461bc93af5c9abccd4d3a3c
     ports:
       - "3001:3001"
 
   api-gastos-zeus:
-    image: 0162b0ba13b49bc1d3a96bbc9cb697daf1009caebdfc443d5d73fe849e71115f
+    image: 4123dbeda5498d442265f06ca79622d1c65f040de170f34a58f8d2ab17991348
     ports: 
      - "3003:3003"
 

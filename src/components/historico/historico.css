@@ -1,13 +1,18 @@
-
-
+.container{
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10rem;
+}
   .historico-container {
-    width: 80%;
     background-color: #fff; /* Cor de fundo do container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
     border-radius: 8px; /* Cantos arredondados */
     padding: 20px;
     box-sizing: border-box;
     text-align: center; /* Centralizar o conteúdo no container */
+    height: 75vh;
   }
   
   .historico-title {

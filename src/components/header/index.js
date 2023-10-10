@@ -52,8 +52,7 @@ function Header() {
 
         <button onClick={handleClickButton}>Sair</button>
       </h1>
-      <div className="mesAndAnoContainer">
-        <p>Mês Atual: {tempoSelecionado == 2000 ? "Todos os meses " : tempoSelecionado}</p>
+      {/* <div className="mesAndAnoContainer">
         {/* <p>
           Ano Selecionado:
           <select value={anoSelecionado} onChange={(e) =>handleChangeAno(e)}>
@@ -63,8 +62,8 @@ function Header() {
               </option>
             ))}
           </select>
-        </p> */}
-      </div>
+        </p> }
+      </div> */}
     </header>
   );
 }

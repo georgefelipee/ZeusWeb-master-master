@@ -22,9 +22,9 @@
     background-color: #DE8434; /* Cor de fundo do botão */
     color: #fff; /* Cor do texto do botão */
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition:  0.3s ease;
 }
-.tituloheader button:hover {
+.tituloheaderr button:hover {
     background-color: #f44336; /* Cor de fundo do botão ao passar o mouse */
 }
 

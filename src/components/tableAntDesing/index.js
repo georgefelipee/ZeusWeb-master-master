@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 function TableAntDesing({notify}) {
-  const { ComprasContextarray,setCompras, mesesDisponiveisContext, setTempoSelecionado,pegarGastos } =
+  const { setSomaTotalQuantidadeDinamico,setSomaTotalGastoDinamico,ComprasContextarray,setCompras,isLoading, setIsLoading, mesesDisponiveisContext, setTempoSelecionado, pegarGastos } =
     useComprasContext();
 
   const [dataSource, setDataSource] = useState([{}]);
@@ -21,10 +21,7 @@ function TableAntDesing({notify}) {
   const [order, setOrder] = useState("asc");
   const [openEdit,setOpenEdit] = useState(false)
   const [gastoParaEditar, setGastoParaEditar] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   
-
-
   const toggleOrder = () => {
     const newOrder = order === "asc" ? "desc" : "asc";
     setOrder(newOrder);
@@ -104,18 +101,25 @@ function TableAntDesing({notify}) {
 
   const handleDelete = async(key) => {
     try {
-      if(ComprasContextarray.lenght = 1){
-        setIsLoading(true);
+      if(ComprasContextarray.length == 1){
         const updatedData = await ComprasContextarray.filter(item => item._id !== key);
-        setCompras('')
+        await axios.delete(`http://localhost:3003/gastos/${key}`)
+        setCompras('')  
+        notify() 
+        setCompras(updatedData)
+        setIsLoading(true);
+        pegarGastos()
+        setSomaTotalGastoDinamico(0)
+        setSomaTotalQuantidadeDinamico(0)
+        setTempoSelecionado('2000')
         return
       }
-      setIsLoading(true);
       const updatedData = await ComprasContextarray.filter(item => item._id !== key);
+      await axios.delete(`http://localhost:3003/gastos/${key}`)
       setCompras(updatedData)
-      notify()
-      axios.delete(`http://localhost:3003/gastos/${key}`)
-      setCompras(updatedData)
+      setIsLoading(true);
+      notify() 
+      pegarGastos()
     } catch (error) {
       console.error('Erro ao excluir o item', error);
     } finally {

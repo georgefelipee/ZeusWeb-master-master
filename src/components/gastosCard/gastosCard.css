@@ -1,15 +1,16 @@
 .container-gastos{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.6rem;
+    
+    gap: 0.3rem;
 }
 .gastos-container{
   padding: 0.5rem 2rem ;
   align-items: center;
   justify-content: center;
   color: #FEFAE0;
- 
+  width: 47vh;
+  margin-top: 25px;
 }
 
 .gastos-container h3{
@@ -39,9 +40,10 @@
 }
 .button-periodo-container{
     display: flex;
-    width: 80%;
+    width: 250px;
     flex-direction: column;
     gap: 1.2rem;
+    padding-left: 2rem;
 }
 
 .periodo-containerWidth{
